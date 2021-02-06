@@ -1,55 +1,51 @@
 
 import { StyleSheet, Text, View, Button } from 'react-native';
-import {Video} from "expo-av";
-import React, { useState, useEffect } from 'react';
+import Video from 'react-native-video';
+import React, { useState, useEffect, useRef } from 'react';
+import { Dimensions } from 'react-native';
 
 export default function VideoDetail({route, navigation}) {
-    console.log(route.params.videoData)
+    // console.log(route.params.videoData)
     let params = route.params;
     let videoData = params.videoData;
     let videoUrl = videoData.sources;
     let playbackObject;
-    const [isPlaying, setIsPlaying] = useState(false);
+    const playerRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(true);
     const [playText, setPlayText] = useState("Play");
 
 
     let _handleVideoRef = component => {
         playbackObject = component;
-
     }
 
     const _playPauseVideo = () =>{
         if(isPlaying){
             setIsPlaying(false);
-            setPlayText("Play");
-            playbackObject.pauseAsync();
+            setPlayText("Pause");
         }
         else{
             setIsPlaying(true);
-            setPlayText("Pause");
-            playbackObject.playAsync();
+            setPlayText("Play");
         }
 
     }
 
     const _stopVideo = () =>{
-        playbackObject.stopAsync();
+        playerRef.current.seek(0);
+        _playPauseVideo();
     }
 
 
 
     return (
         <View style={styles.container}>
-            <Video
-                ref={_handleVideoRef}
-                source={{ uri: videoUrl }}
-                rate={1.0}
-                volume={1.0}
-                isMuted={false}
-                resizeMode="contain"
-                shouldPlay={false}
-                isLooping={false}
-                style={{ width: 300, height: 300 }}
+
+
+            <Video source={{uri: videoUrl}}   // Can be a URL or a local file.
+                   style={styles.video}
+                   paused={isPlaying}
+                   ref={playerRef}
             />
 
             <View style={styles.buttonContainer}>
@@ -63,11 +59,21 @@ export default function VideoDetail({route, navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        alignContent:'center'
     },
+    video: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width * (9 / 16),
+        backgroundColor: 'black',
+    },
+
     buttonContainer:{
         width: "50%",
         display: "flex",

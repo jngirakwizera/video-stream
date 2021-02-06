@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,  { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Platform } from 'react-native';
 
 import IOSVideoModule from "./IOSVideoModule";
 import VideoModule from "./VideoModule";
@@ -14,13 +14,11 @@ export default function Home({navigation}) {
 
     if(Platform.OS === 'ios'){
         let videoDataJSON = IOSVideoModule.getVideoData((error, videoData) => {
-            console.log(`Video data from native is ${videoData}`);
             setMediaData(JSON.parse(videoData));
         });
     }
     else{
         let videoDataJSON = VideoModule.getVideoData((videoData) => {
-            console.log(`Video data from native is ${videoData}`);
             setMediaData(JSON.parse(videoData));
         });
     }
