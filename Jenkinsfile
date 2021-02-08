@@ -1,6 +1,14 @@
 pipeline {
   agent any
-
+  tools {nodejs "node"}
+  stages {
+    stage('Init') {
+        steps {
+          echo 'Install dependencies...'
+          sh 'npm i'
+          sh 'npm ci'
+        }
+    }
     stage('Building iOS') {
       steps {
         echo 'Building iOS...'
