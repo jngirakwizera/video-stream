@@ -4,7 +4,7 @@ pipeline {
     stage('Init') {
         steps {
           echo 'Install dependencies...'
-          sh '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+          sh '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null'
           sh 'brew install node'
           sh 'npm i'
           sh 'npm ci'
