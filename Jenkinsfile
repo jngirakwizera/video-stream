@@ -1,17 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Review node and npm installations') {
-      steps {
-        nodejs(nodeJSInstallationName: 'node') {
-          sh 'npm -v'  //substitute with your code
-          sh 'node -v'
-        }
-      }
-    }
     stage('Init') {
         steps {
           echo 'Install dependencies...'
+          sh 'curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node-(.*)\.pkg</a>.*|\1|p')}.pkg" > "$HOME/Downloads/node-latest.pkg" && sudo installer -store -pkg "$HOME/Downloads/node-latest.pkg" -target "/"'
           sh 'npm i'
           sh 'npm ci'
         }
