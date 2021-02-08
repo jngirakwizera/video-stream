@@ -4,6 +4,7 @@ pipeline {
     stage('Init') {
         steps {
           echo 'Install dependencies...'
+          sh 'brew install node'
           sh 'npm i'
           sh 'npm ci'
         }
