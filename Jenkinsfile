@@ -1,7 +1,14 @@
 pipeline {
   agent any
-  tools {nodejs "node"}
   stages {
+    stage('Review node and npm installations') {
+      steps {
+        nodejs(nodeJSInstallationName: 'node') {
+          sh 'npm -v'  //substitute with your code
+          sh 'node -v'
+        }
+      }
+    }
     stage('Init') {
         steps {
           echo 'Install dependencies...'
