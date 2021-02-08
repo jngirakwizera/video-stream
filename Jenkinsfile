@@ -9,7 +9,7 @@ pipeline {
           sh 'yes Y | $ANDROID_HOME/tools/bin/sdkmanager --licenses'
           sh 'echo "no" | $ANDROID_HOME/tools/bin/avdmanager --verbose create avd --force --name "test" --device "pixel" --package "system-images;android-28;google_apis;x86" --tag "google_apis" --abi "x86"'
           sh '$ANDROID_HOME/emulator/emulator -list-avds'
-          sh '$ANDROID_HOME/emulator/emulator -avd test -noaudio -no-boot-anim -gpu off'
+          sh '$ANDROID_HOME/emulator -avd test -noaudio -no-boot-anim -gpu off'
           sh 'npm i'
           sh 'npm ci'
         }
