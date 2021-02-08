@@ -1,13 +1,6 @@
 pipeline {
   agent any
-    stage('Init') {
-        steps {
-          echo 'Install dependencies...'
-          sh 'brew install node'
-          sh 'npm i'
-          sh 'npm ci'
-        }
-    }
+
     stage('Building iOS') {
       steps {
         echo 'Building iOS...'
