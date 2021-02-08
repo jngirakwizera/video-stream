@@ -16,8 +16,8 @@ pipeline {
     stage('Building Android') {
         steps {
             echo 'Building Android...'
-
-            sh 'npx react-native run-android'
+            sh 'emulator -avd test -no-audio -no-boot-anim -no-window -accel on -gpu off -skin 1440x2880'
+            sh 'npx react-native run-android '
         }
     }
     stage('Testing') {
