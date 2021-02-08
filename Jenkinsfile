@@ -6,7 +6,7 @@ pipeline {
           echo 'Install dependencies...'
           sh 'uname -a'
           sh '$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;default;armeabi-v7a"'
-          sh 'echo "no" | avdmanager create avd -n emuTest -k "system-images;android-24;default;armeabi-v7a"'
+          sh 'echo "no" | avdmanager create avd --force -n emuTest -k "system-images;android-24;default;armeabi-v7a"'
           sh 'emulator -avd emuTest -noaudio -no-boot-anim -gpu off'
           sh 'npm i'
           sh 'npm ci'
