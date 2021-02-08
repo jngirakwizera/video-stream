@@ -4,7 +4,7 @@ pipeline {
     stage('Init') {
         steps {
           echo 'Install dependencies...'
-          sh '/bin/bash -c "$(curl -fsSL https://gist.githubusercontent.com/jngirakwizera/933fbf60a074f3f73fa7f055cfe55c32/raw/01f6d3fb6b3301c5c5c774d59f0625f5626e4f26/macInstall.sh)" > /dev/null'
+          sh 'uname -a'
           sh 'npm i'
           sh 'npm ci'
         }
