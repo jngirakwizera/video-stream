@@ -5,6 +5,7 @@ pipeline {
         steps {
           echo 'Install dependencies...'
           sh 'uname -a'
+          sh 'avdmanager'
           sh 'npm i'
           sh 'npm ci'
         }
@@ -13,7 +14,7 @@ pipeline {
     stage('Building Android') {
         steps {
             echo 'Building Android...'
-            sh 'avdmanager create avd -n emulator_name -k "system-images;android-24;default;x86_64" -g "default"'
+            sh 'avdmanager'
             sh 'npx react-native run-android'
         }
     }
