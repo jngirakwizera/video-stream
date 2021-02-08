@@ -5,6 +5,10 @@ pipeline {
         steps {
           echo 'Install dependencies...'
           sh 'uname -a'
+          sh 'yes Y | $ANDROID_HOME/tools/bin/sdkmanager --install "platform-tools" "system-images;android-28;google_apis;x86" "platforms;android-28" "build-tools;28.0.3" "emulator"'
+          sh 'yes Y | $ANDROID_HOME/tools/bin/sdkmanager --licenses'
+          sh 'echo "no" | $ANDROID_HOME/tools/bin/avdmanager --verbose create avd --force --name "test" --device "pixel" --package "system-images;android-28;google_apis;x86" --tag "google_apis" --abi "x86"'
+          sh '$ANDROID_HOME/emulator/emulator -list-avds'
           sh '$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;default;armeabi-v7a"'
           sh 'echo "no" | avdmanager create avd --force -n emuTest -k "system-images;android-24;default;armeabi-v7a"'
           sh 'emulator -avd emuTest -noaudio -no-boot-anim -gpu off'
