@@ -5,6 +5,8 @@ pipeline {
         steps {
           echo 'Install dependencies...'
           sh 'uname -a'
+          sh 'cd $ANDROID_HOME/tools/bin'
+          sh './sdkmanager "system-images;android-25;google_apis;x86"'
           sh 'avdmanager create avd -n emuTest -k "system-images;android-24;default;armeabi-v7a"'
           sh 'emulator -avd emuTest -noaudio -no-boot-anim -gpu off'
           sh 'npm i'
