@@ -9,13 +9,7 @@ pipeline {
           sh 'npm ci'
         }
     }
-    stage('Building iOS') {
-      steps {
-        echo 'Building iOS...'
-        sh 'npx pod-install'
-        sh 'npx react-native run-ios'
-      }
-    }
+
     stage('Building Android') {
         steps {
             echo 'Building Android...'
