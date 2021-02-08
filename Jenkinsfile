@@ -13,7 +13,7 @@ pipeline {
     stage('Building Android') {
         steps {
             echo 'Building Android...'
-            sh 'avdmanager create avd -n emulator_name -k "system-images;android-24;default;x86_64" -g "default"'
+            sh "adb"
             sh 'npx react-native run-android'
         }
     }
