@@ -8,6 +8,7 @@ pipeline {
           sh '$ANDROID_HOME/emulator/emulator -list-avds'
           sh 'npm i'
           sh 'npm ci'
+          sh 'sudo apt-get install libpulse0:i386'
         }
     }
     stage('Building Android') {
