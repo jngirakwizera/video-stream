@@ -5,19 +5,25 @@ import { StyleSheet, Text, View, FlatList, Platform } from 'react-native';
 import IOSVideoModule from "../native_components/IOSVideoModule";
 import VideoModule from "../native_components/VideoModule";
 
+//Functional component used to show the list of videos
 
 export default function Home({navigation}) {
 
 
+    //react hooks
     const [mediaData, setMediaData] = useState([]);
 
 
+    //check if iOS or Android
     if(Platform.OS === 'ios'){
+
+        //get video data from native iOS component
         let videoDataJSON = IOSVideoModule.getVideoData((error, videoData) => {
             setMediaData(JSON.parse(videoData));
         });
     }
     else{
+        //get video data from native Android component
         let videoDataJSON = VideoModule.getVideoData((videoData) => {
             setMediaData(JSON.parse(videoData));
         });
@@ -27,6 +33,9 @@ export default function Home({navigation}) {
 
     return (
         <View style={styles.container}>
+
+            {/*flatlist component with child text components to show video title*/}
+            {/*when pressed will navigate to the video detail screen, passing the data */}
             <FlatList
                 data={mediaData}
                 renderItem={({ item }) => <Text style={styles.item} key={item.title} onPress={() =>
@@ -38,6 +47,7 @@ export default function Home({navigation}) {
     );
 }
 
+//css
 const styles = StyleSheet.create({
     container: {
         flex: 1,
