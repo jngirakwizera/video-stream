@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React,  { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Platform } from 'react-native';
 
-import IOSVideoModule from "./IOSVideoModule";
-import VideoModule from "./VideoModule";
+import IOSVideoModule from "../native_components/IOSVideoModule";
+import VideoModule from "../native_components/VideoModule";
 
 
 export default function Home({navigation}) {
@@ -22,7 +22,6 @@ export default function Home({navigation}) {
             setMediaData(JSON.parse(videoData));
         });
     }
-
 
 
 

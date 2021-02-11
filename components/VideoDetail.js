@@ -40,14 +40,11 @@ export default function VideoDetail({route, navigation}) {
 
     return (
         <View style={styles.container}>
-
-
             <Video source={{uri: videoUrl}}   // Can be a URL or a local file.
                    style={styles.video}
                    paused={isPlaying}
                    ref={playerRef}
             />
-
             <View style={styles.buttonContainer}>
                 <Button style={styles.videoButton} onPress={_playPauseVideo} title={playText}/>
                 <Button style={styles.videoButton} onPress={_stopVideo} title="Stop"/>
