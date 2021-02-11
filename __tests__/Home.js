@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import Home from "../components/Home";
 
 
-jest.mock('../IOSVideoModule', () => ({ getVideoData: jest.fn(function () {
+jest.mock('../native_components/IOSVideoModule', () => ({ getVideoData: jest.fn(function () {
         return "[ { \"description\" : \"The Smoking Tire meets up with Chris and Jorge from CarsForAGrand.com to see just how far $1,000 can go when looking for a car.The Smoking Tire meets up with Chris and Jorge from CarsForAGrand.com to see just how far $1,000 can go when looking for a car.\",\n" +
             "            \"sources\" : [ \"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4\" ],\n" +
             "            \"subtitle\" : \"By Garage419\",\n" +
